@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AMF Padel Academy – Entrena. Mejora. Supérate.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --lime: #c8f000;
+      --lime-dark: #a0c400;
+      --black: #0a0a0a;
+      --dark: #111111;
+      --card: #161616;
+      --border: #1e1e1e;
+      --white: #ffffff;
+      --gray: #888888;
+      --light-gray: #cccccc;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,240,0,0.15);
+      padding: 0 2rem;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-logo img {
+      height: 44px;
+      object-fit: contain;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--light-gray);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--lime); }
+
+    .nav-cta {
+      background: var(--lime);
+      color: var(--black);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.4rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--lime-dark); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 70px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 70% 50%, rgba(200,240,0,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 10% 80%, rgba(200,240,0,0.04) 0%, transparent 60%);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(200,240,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,240,0,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    .hero-text .tagline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-text .tagline::before {
+      content: '';
+      width: 30px;
+      height: 2px;
+      background: var(--lime);
+    }
+
+    .hero-text h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      line-height: 0.95;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-text h1 span {
+      color: var(--lime);
+      display: block;
+    }
+
+    .hero-text .subtitle {
+      font-size: 1.1rem;
+      color: var(--light-gray);
+      margin: 1.5rem 0 2.5rem;
+      line-height: 1.6;
+      max-width: 440px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--lime);
+      color: var(--black);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.9rem 2rem;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--lime-dark); transform: translateY(-2px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.9rem 2rem;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.2);
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--lime); color: var(--lime); }
+
+    .hero-image {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 480px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 60px rgba(200,240,0,0.2));
+    }
+
+    .hero-accent {
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 200px;
+      background: linear-gradient(to bottom, transparent, var(--lime), transparent);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-item .num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: var(--lime);
+      line-height: 1;
+    }
+
+    .stat-item .label {
+      font-size: 0.8rem;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── SECTIONS GENERAL ── */
+    section { padding: 6rem 2rem; }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--lime);
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .section-title span { color: var(--lime); }
+
+    .section-desc {
+      color: var(--light-gray);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 550px;
+    }
+
+    /* ── BIENVENIDA ── */
+    .welcome {
+      background: var(--dark);
+    }
+
+    .welcome-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .welcome-image {
+      position: relative;
+    }
+
+    .welcome-image img {
+      width: 100%;
+      border-radius: 2px;
+      object-fit: cover;
+    }
+
+    .welcome-frame {
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      right: 16px;
+      bottom: 16px;
+      border: 2px solid var(--lime);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .welcome-image img { position: relative; z-index: 1; }
+
+    .welcome-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--lime);
+      color: var(--black);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 1.2rem;
+      z-index: 2;
+      text-align: center;
+      line-height: 1.3;
+    }
+
+    .welcome-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .feature-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      background: var(--card);
+      border-left: 3px solid var(--lime);
+    }
+
+    .feature-row .icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .feature-row span {
+      font-size: 0.95rem;
+      color: var(--light-gray);
+    }
+
+    /* ── CLASES ── */
+    .clases { background: var(--black); }
+
+    .clases-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+      gap: 2rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+    }
+
+    .clase-card {
+      background: var(--card);
+      padding: 2rem;
+      border-top: 3px solid transparent;
+      transition: border-color 0.25s, transform 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .clase-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(200,240,0,0.04) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .clase-card:hover {
+      border-top-color: var(--lime);
+      transform: translateY(-4px);
+    }
+
+    .clase-card:hover::before { opacity: 1; }
+
+    .card-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: rgba(200,240,0,0.12);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border: 1px solid var(--border);
+      color: var(--gray);
+    }
+
+    .tag.lime {
+      border-color: var(--lime);
+      color: var(--lime);
+    }
+
+    /* ── BANNER CLASES ── */
+    .banner-section {
+      padding: 0;
+      position: relative;
+    }
+
+    .banner-section img {
+      width: 100%;
+      max-height: 440px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85);
+    }
+
+    .banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(10,10,10,0.7) 0%, transparent 60%);
+      display: flex;
+      align-items: center;
+    }
+
+    .banner-text {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      width: 100%;
+    }
+
+    .banner-text h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1;
+      color: var(--white);
+    }
+
+    .banner-text h2 span { color: var(--lime); }
+
+    .banner-text p {
+      color: var(--light-gray);
+      font-size: 1rem;
+      margin-top: 0.75rem;
+      max-width: 380px;
+    }
+
+    /* ── TARIFAS ── */
+    .tarifas { background: var(--dark); }
+
+    .tarifas-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+
+    .pricing-table {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .pricing-category {
+      background: var(--card);
+    }
+
+    .pricing-header {
+      background: var(--lime);
+      padding: 1.2rem 1.5rem;
+    }
+
+    .pricing-header h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: var(--black);
+      letter-spacing: 0.05em;
+    }
+
+    .pricing-header p {
+      font-size: 0.75rem;
+      color: rgba(0,0,0,0.6);
+      font-weight: 600;
+    }
+
+    .pricing-rows {
+      padding: 1rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .price-row:last-child { border-bottom: none; }
+
+    .price-row .persons {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+      color: var(--light-gray);
+    }
+
+    .price-row .persons .ico { font-size: 0.8rem; color: var(--gray); }
+
+    .price-row .amount {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      color: var(--lime);
+      letter-spacing: 0.02em;
+    }
+
+    .infantiles-box {
+      margin-top: 1px;
+      background: var(--card);
+      padding: 2rem 2.5rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .infantiles-box .left h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--lime);
+      line-height: 1;
+    }
+
+    .infantiles-box .left p {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-top: 0.25rem;
+    }
+
+    .infantiles-box .right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4rem;
+    }
+
+    .info-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: var(--light-gray);
+    }
+
+    .info-pill::before {
+      content: '✓';
+      color: var(--lime);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    /* ── INFANTILES ── */
+    .infantiles { background: var(--black); }
+
+    .infantiles-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .infantiles-image img {
+      width: 100%;
+      object-fit: contain;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 1.2rem;
+      background: var(--card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--lime);
+    }
+
+    .skill-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .skill-text {
+      font-size: 0.9rem;
+      color: var(--light-gray);
+      font-weight: 500;
+    }
+
+    /* ── SORTEO ── */
+    .sorteo { background: var(--dark); }
+
+    .sorteo-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .sorteo-image img {
+      width: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 40px rgba(200,240,0,0.15));
+    }
+
+    .sorteo-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .step-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: var(--lime);
+      line-height: 1;
+      min-width: 28px;
+    }
+
+    .step-text strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 0.15rem;
+    }
+
+    .step-text span {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+
+    /* ── CONTACTO ── */
+    .contacto {
+      background: var(--black);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-card {
+      background: var(--card);
+      padding: 2rem;
+      border-top: 3px solid var(--lime);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .contact-icon {
+      background: rgba(200,240,0,0.1);
+      border: 1px solid rgba(200,240,0,0.2);
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-item .info strong {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+      margin-bottom: 0.15rem;
+    }
+
+    .contact-item .info a,
+    .contact-item .info span {
+      font-size: 0.95rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .contact-item .info a:hover { color: var(--lime); }
+
+    .contact-form-area h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gray);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      padding: 0.8rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--lime);
+    }
+
+    .form-group textarea { height: 110px; resize: vertical; }
+
+    .form-group select option { background: #1a1a1a; }
+
+    .form-submit {
+      width: 100%;
+      background: var(--lime);
+      color: var(--black);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .form-submit:hover { background: var(--lime-dark); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #050505;
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand img {
+      height: 50px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.6;
+      max-width: 280px;
+    }
+
+    .footer-brand .slogan {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-top: 1rem;
+    }
+
+    .footer-col h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col ul li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-col ul a {
+      font-size: 0.88rem;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul a:hover { color: var(--lime); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bottom p {
+      font-size: 0.8rem;
+      color: var(--gray);
+    }
+
+    .footer-bottom span { color: var(--lime); }
+
+    /* ── DECORATIVE DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--lime), transparent);
+      opacity: 0.3;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+
+      .hero-content,
+      .welcome-grid,
+      .infantiles-grid,
+      .sorteo-inner,
+      .contact-grid,
+      .tarifas-intro {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .hero-image { display: none; }
+
+      .clases-header { flex-direction: column; align-items: flex-start; }
+
+      .cards-grid { grid-template-columns: 1fr; }
+
+      .pricing-table { grid-template-columns: 1fr; }
+
+      .infantiles-box { grid-template-columns: 1fr; }
+
+      .infantiles-box .right { grid-template-columns: 1fr; }
+
+      .footer-top { grid-template-columns: 1fr; }
+
+      .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="../uploads/logo-simple.png" alt="AMF Padel Academy Logo">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#bienvenida">Academia</a></li>
+    <li><a href="#clases">Clases</a></li>
+    <li><a href="#tarifas">Tarifas</a></li>
+    <li><a href="#infantiles">Infantiles</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Reserva tu plaza</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="tagline">Loja · Granada</div>
+      <h1>
+        AMF
+        <span>Padel Academy</span>
+      </h1>
+      <p class="subtitle">
+        Entrena. Mejora. Supérate. Clases de pádel para todos los niveles: adultos, infantiles (6-10) y adolescentes (10+).
+      </p>
+      <div class="hero-btns">
+        <a href="#clases" class="btn-primary">Ver clases</a>
+        <a href="#contacto" class="btn-secondary">Contactar</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="num">3</div>
+          <div class="label">Niveles</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">6+</div>
+          <div class="label">Años mínimo</div>
+        </div>
+        <div class="stat-item">
+          <div class="num">100%</div>
+          <div class="label">Personalizado</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="../uploads/logo-principal.png" alt="AMF Padel Academy">
+      <div class="hero-accent"></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BIENVENIDA -->
+<section class="welcome" id="bienvenida">
+  <div class="section-inner">
+    <div class="welcome-grid">
+      <div class="welcome-image">
+        <div class="welcome-frame"></div>
+        <img src="../uploads/bienvenida-img.png" alt="Bienvenida AMF Padel Academy">
+        <div class="welcome-badge">Loja<br>Granada</div>
+      </div>
+      <div class="welcome-text">
+        <div class="section-label">Bienvenidos</div>
+        <h2 class="section-title">¡Bienvenidos a <span>AMF</span> Padel Academy!</h2>
+        <p class="section-desc">
+          Hola, soy <strong>Alfredo Montalban Fernandez</strong> 👋. Os presento un nuevo proyecto deportivo creado para enseñar, formar y hacer crecer jugadores de pádel 🎾
+        </p>
+        <p class="section-desc" style="margin-top:1rem;">
+          Un proyecto que irá creciendo poco a poco, con mucha ilusión, trabajo y pasión por este deporte.
+        </p>
+        <div class="welcome-features">
+          <div class="feature-row">
+            <span class="icon">🎾</span>
+            <span>Clases de pádel para adultos, infantiles y adolescentes</span>
+          </div>
+          <div class="feature-row">
+            <span class="icon">📈</span>
+            <span>Iniciación · Intermedio · Avanzado</span>
+          </div>
+          <div class="feature-row">
+            <span class="icon">💪</span>
+            <span>Técnica, táctica y preparación física</span>
+          </div>
+          <div class="feature-row">
+            <span class="icon">🏆</span>
+            <span>Coaching deportivo y preparación para competición</span>
+          </div>
+          <div class="feature-row">
+            <span class="icon">🎯</span>
+            <span>Metodología de entrenamiento personalizada</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CLASES BANNER -->
+<div class="banner-section">
+  <img src="../uploads/clases__banner-img.png" alt="Clases AMF Padel Academy">
+  <div class="banner-overlay">
+    <div class="banner-text">
+      <h2>Clases de<br><span>Pádel</span></h2>
+      <p>Metodología, técnica, táctica, preparación física y coaching deportivo.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CLASES -->
+<section class="clases" id="clases">
+  <div class="section-inner">
+    <div class="clases-header">
+      <div>
+        <div class="section-label">Modalidades</div>
+        <h2 class="section-title">Nuestras <span>Clases</span></h2>
+      </div>
+      <p style="color:var(--gray);font-size:0.95rem;max-width:320px;text-align:right;">
+        Entrenamiento integral para jugadores de todos los niveles
+      </p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="clase-card">
+        <div class="card-num">01</div>
+        <div class="card-title">Individual</div>
+        <p class="card-desc">Clases 100% personalizadas adaptadas a tu nivel y objetivos. Máximo progreso en el mínimo tiempo.</p>
+        <div class="card-tags">
+          <span class="tag lime">1 persona</span>
+          <span class="tag">Todos los niveles</span>
+        </div>
+      </div>
+      <div class="clase-card">
+        <div class="card-num">02</div>
+        <div class="card-title">En pareja</div>
+        <p class="card-desc">Perfecto para amigos o parejas que quieren mejorar juntos. Dinámica de grupo con atención individual.</p>
+        <div class="card-tags">
+          <span class="tag lime">2 personas</span>
+          <span class="tag">Iniciación · Avanzado</span>
+        </div>
+      </div>
+      <div class="clase-card">
+        <div class="card-num">03</div>
+        <div class="card-title">Grupos</div>
+        <p class="card-desc">Clases para grupos de 3 y 4 personas. Mayor interacción, juego en pista y diversión garantizada.</p>
+        <div class="card-tags">
+          <span class="tag lime">3-4 personas</span>
+          <span class="tag">Intermedio · Avanzado</span>
+        </div>
+      </div>
+      <div class="clase-card">
+        <div class="card-num">04</div>
+        <div class="card-title">Técnica y táctica</div>
+        <p class="card-desc">Trabajo específico de golpes, posicionamiento en pista y estrategia de juego para mejorar resultados.</p>
+        <div class="card-tags">
+          <span class="tag lime">Todos los formatos</span>
+          <span class="tag">Técnico</span>
+        </div>
+      </div>
+      <div class="clase-card">
+        <div class="card-num">05</div>
+        <div class="card-title">Preparación física</div>
+        <p class="card-desc">Entrenamiento físico específico para el pádel: velocidad, resistencia, fuerza y coordinación.</p>
+        <div class="card-tags">
+          <span class="tag lime">Específica</span>
+          <span class="tag">Pádel</span>
+        </div>
+      </div>
+      <div class="clase-card">
+        <div class="card-num">06</div>
+        <div class="card-title">Competición</div>
+        <p class="card-desc">Preparación para torneos y ligas: trabajo mental, presión de partido y perfeccionamiento técnico.</p>
+        <div class="card-tags">
+          <span class="tag lime">Coaching deportivo</span>
+          <span class="tag">Avanzado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TARIFAS BANNER -->
+<div class="banner-section">
+  <img src="../uploads/tarifas__banner-img.png" alt="Tarifas AMF Padel Academy">
+  <div class="banner-overlay">
+    <div class="banner-text">
+      <h2>Tarifas <span>AMF</span><br>Padel Academy</h2>
+      <p>Precios transparentes y flexibles para todos los perfiles.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TARIFAS -->
+<section class="tarifas" id="tarifas">
+  <div class="section-inner">
+    <div class="tarifas-intro">
+      <div>
+        <div class="section-label">Precios por persona</div>
+        <h2 class="section-title">Tarifas <span>Flexibles</span></h2>
+        <p class="section-desc">
+          Elegimos transparencia y flexibilidad para todos nuestros alumnos. Tarifas claras sin letra pequeña.
+        </p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.75rem;">
+        <div class="feature-row"><span class="icon">📅</span><span>Mañanas · Tardes · Fines de semana</span></div>
+        <div class="feature-row"><span class="icon">📍</span><span>Loja – Granada</span></div>
+        <div class="feature-row"><span class="icon">📲</span><span>Reserva por Instagram o Email</span></div>
+      </div>
+    </div>
+
+    <!-- Pricing table -->
+    <div class="pricing-table">
+      <!-- Mensualidades -->
+      <div class="pricing-category">
+        <div class="pricing-header">
+          <h3>Mensualidades</h3>
+          <p>1 clase/semana · 4 clases/mes</p>
+        </div>
+        <div class="pricing-rows">
+          <div class="price-row">
+            <span class="persons"><span class="ico">👥</span> 4 personas</span>
+            <span class="amount">30€</span>
+          </div>
+          <div class="price-row">
+            <span class="persons"><span class="ico">👥</span> 3 personas</span>
+            <span class="amount">40€</span>
+          </div>
+          <div class="price-row">
+            <span class="persons"><span class="ico">👤</span> 2 personas</span>
+            <span class="amount">60€</span>
+          </div>
+          <div class="price-row">
+            <span class="persons"><span class="ico">👤</span> Individual</span>
+            <span class="amount">110€</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clases sueltas -->
+      <div class="pricing-category">
+        <div class="pricing-header">
+          <h3>Clases Sueltas</h3>
+          <p>Por clase individual</p>
+        </div>
+        <div class="pricing-rows">
+          <div class="price-row">
+            <span class="persons"><span class="ico">👥</span> 4 personas</span>
+            <span class="amount">10€</span>
+          </div>
+          <div class="price-row">
+            <span class="persons"><span class="ico">👥</span> 3 personas</span>
+            <span class="amount">14€</span>
+          </div>
+          <div class="price-row">
+            <span class="persons"><span class="ico">👤</span> 2 personas</span>
+            <span class="amount">20€</span>
+          </div>
+          <div class="price-row">
+            <span class="persons"><span class="ico">👤</span> Individual</span>
+            <span class="amount">30€</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bonos -->
+      <div class="pricing-category">
+        <div class="pricing-header">
+          <h3>Bonos</h3>
+          <p>4 clases o 8 clases</p>
+        </div>
+        <div class="pricing-rows">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;color:var(--lime);text-transform:uppercase;padding:0.5rem 0 0.25rem;">Bono 4 clases</div>
+          <div class="price-row">
+            <span class="persons"><span class="ico">👥</span> 4 personas</span>
+            <span class="amount">35€</span>
+          </div>
+          <div class="price-row">
+            <span class="persons"><span class="ico">👤</span> Individual</span>
+            <span class="amount">120€</span>
+          </div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.1em;color:var(--lime);text-transform:uppercase;padding:0.5rem 0 0.25rem;">Bono 8 clases</div>
+          <div class="price-row">
+            <span class="persons"><span class="ico">👥</span> 4 personas</span>
+            <span class="amount">70€</span>
+          </div>
+          <div class="price-row">
+            <span class="persons"><span class="ico">👤</span> Individual</span>
+            <span class="amount">240€</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Infantiles box -->
+    <div class="infantiles-box">
+      <div class="left">
+        <h3>Infantiles<br>y Adolescentes</h3>
+        <p>Tarifas especiales</p>
+      </div>
+      <div class="right">
+        <div class="info-pill">Infantiles: 6 a 10 años</div>
+        <div class="info-pill">28€/mes por persona</div>
+        <div class="info-pill">Grupos infantiles de 4 o más</div>
+        <div class="info-pill">Adolescentes: desde 10 años</div>
+        <div class="info-pill">Mismas tarifas que adultos</div>
+        <div class="info-pill">Clases adaptadas por edad y nivel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- INFANTILES -->
+<section class="infantiles" id="infantiles">
+  <div class="section-inner">
+    <div class="infantiles-grid">
+      <div class="infantiles-image">
+        <img src="../uploads/infantiles_adolescentes.png" alt="Grupos Infantiles y Adolescentes AMF">
+      </div>
+      <div class="infantiles-text">
+        <div class="section-label">De 6 a 14+ años</div>
+        <h2 class="section-title">Grupos <span>Infantiles</span> y Adolescentes</h2>
+        <p class="section-desc">
+          En AMF Padel Academy formamos a niños/as y adolescentes a través de clases dinámicas, divertidas y completas. Desde 6 años · Iniciación · Intermedio · Competición.
+        </p>
+        <div class="skills-list">
+          <div class="skill-item"><span class="skill-icon">🧠</span><span class="skill-text">Coordinación y psicomotricidad</span></div>
+          <div class="skill-item"><span class="skill-icon">🎾</span><span class="skill-text">Técnica y perfeccionamiento</span></div>
+          <div class="skill-item"><span class="skill-icon">♟️</span><span class="skill-text">Táctica y comprensión del juego</span></div>
+          <div class="skill-item"><span class="skill-icon">💪</span><span class="skill-text">Preparación física adaptada</span></div>
+          <div class="skill-item"><span class="skill-icon">⭐</span><span class="skill-text">Trabajo de valores, disciplina y confianza</span></div>
+          <div class="skill-item"><span class="skill-icon">🏆</span><span class="skill-text">Preparación para competición en adolescentes</span></div>
+        </div>
+        <div style="margin-top:2rem;">
+          <a href="#contacto" class="btn-primary">Reserva tu plaza</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SORTEO -->
+<section class="sorteo" id="sorteo">
+  <div class="section-inner">
+    <div class="sorteo-inner">
+      <div>
+        <div class="section-label">¡Participa!</div>
+        <h2 class="section-title">¡Sorteo <span>Inauguración!</span></h2>
+        <p class="section-desc">
+          Por la inauguración de AMF Padel Academy sorteamos <strong style="color:var(--lime)">1 mes de clases gratuitas</strong> para 3-4 personas. Técnica, táctica, preparación física y metodología de entrenamiento.
+        </p>
+        <div style="margin-top:1rem;padding:1rem 1.2rem;background:var(--card);border-left:3px solid var(--lime);">
+          <p style="font-size:0.85rem;color:var(--gray);">Este mes de clases incluye:</p>
+          <p style="font-size:0.9rem;color:var(--white);margin-top:0.3rem;">Técnica, táctica, preparación física y metodología de entrenamiento. Para niveles de iniciación, intermedio y avanzado.</p>
+        </div>
+
+        <div class="sorteo-steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <strong>Sigue a @amf_padel.academy</strong>
+              <span>Síguenos en Instagram para participar</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <strong>Comenta esta publicación</strong>
+              <span>Cuantos más comentarios, más posibilidades de ganar</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <strong>Comparte la publicación</strong>
+              <span>Compártela en tu historia para aumentar tus posibilidades</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-text">
+              <strong>¡El ganador se anuncia pronto!</strong>
+              <span>El resultado se publicará en Instagram próximamente</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:2rem;">
+          <a href="https://www.instagram.com/amf_padel.academy" target="_blank" class="btn-primary">Ir a Instagram</a>
+        </div>
+      </div>
+
+      <div class="sorteo-image">
+        <img src="../uploads/banner-sorteo.png" alt="Sorteo Inauguración AMF Padel Academy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACTO -->
+<section class="contacto" id="contacto">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:4rem;">
+      <div class="section-label" style="justify-content:center;">Habla con nosotros</div>
+      <h2 class="section-title">Reserva tu <span>Plaza</span></h2>
+      <p class="section-desc" style="margin:0 auto;text-align:center;">Contacta con AMF Padel Academy y empieza a entrenar cuanto antes.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div>
+        <div class="contact-card">
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div class="info">
+              <strong>Email</strong>
+              <a href="mailto:amf.padel.academy@gmail.com">amf.padel.academy@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📸</div>
+            <div class="info">
+              <strong>Instagram</strong>
+              <a href="https://www.instagram.com/amf_padel.academy" target="_blank">@amf_padel.academy</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="info">
+              <strong>Ubicación</strong>
+              <span>Loja – Granada</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">⏰</div>
+            <div class="info">
+              <strong>Horarios</strong>
+              <span>Mañanas · Tardes · Fines de semana</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta de visita -->
+        <div style="margin-top:1.5rem;">
+          <img src="../uploads/tarjeta.png" alt="Tarjeta de visita AMF Padel Academy" style="width:100%;object-fit:contain;border-radius:2px;">
+        </div>
+      </div>
+
+      <div class="contact-form-area">
+        <h3>Envíanos un mensaje</h3>
+        <div class="form-group">
+          <label>Nombre completo</label>
+          <input type="text" placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+          <label>Email o Instagram</label>
+          <input type="text" placeholder="tu@email.com o @usuario">
+        </div>
+        <div class="form-group">
+          <label>Modalidad de interés</label>
+          <select>
+            <option value="">Selecciona una opción...</option>
+            <option>Adultos – Individual</option>
+            <option>Adultos – Pareja (2 personas)</option>
+            <option>Adultos – Grupo (3-4 personas)</option>
+            <option>Infantiles (6-10 años)</option>
+            <option>Adolescentes (10+ años)</option>
+            <option>Preparación para competición</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Nivel actual</label>
+          <select>
+            <option value="">Selecciona tu nivel...</option>
+            <option>Iniciación</option>
+            <option>Intermedio</option>
+            <option>Avanzado</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mensaje</label>
+          <textarea placeholder="Cuéntanos lo que necesitas..."></textarea>
+        </div>
+        <a href="mailto:amf.padel.academy@gmail.com" class="form-submit" style="display:block;text-align:center;">
+          Enviar mensaje
+        </a>
+        <p style="font-size:0.8rem;color:var(--gray);margin-top:0.75rem;text-align:center;">
+          También puedes contactar directamente por Instagram: <span style="color:var(--lime);">@amf_padel.academy</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../uploads/logo-simple.png" alt="AMF Padel Academy">
+        <p>Un proyecto deportivo creado para enseñar, formar y hacer crecer jugadores de pádel en Loja (Granada).</p>
+        <div class="slogan">Entrena · Mejora · Supérate</div>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#bienvenida">Academia</a></li>
+          <li><a href="#clases">Clases</a></li>
+          <li><a href="#tarifas">Tarifas</a></li>
+          <li><a href="#infantiles">Infantiles y Adolescentes</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:amf.padel.academy@gmail.com">amf.padel.academy@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/amf_padel.academy" target="_blank">@amf_padel.academy</a></li>
+          <li><a href="#">Loja – Granada</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 <span>AMF Padel Academy</span>. Todos los derechos reservados.</p>
+      <p>Diseñado para <span>Alfredo Montalban Fernandez</span></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
